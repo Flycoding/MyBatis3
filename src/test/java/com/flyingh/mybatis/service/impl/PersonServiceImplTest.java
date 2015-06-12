@@ -45,4 +45,9 @@ public class PersonServiceImplTest {
             System.out.println(person);
         }
     }
+
+    @Test
+    public void testFindPersonWithBooks() throws Exception {
+        personService.findPersonWithBooks(1).forEach(System.out::println);
+    }
 }

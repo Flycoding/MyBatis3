@@ -37,4 +37,9 @@ public class PersonServiceImpl implements PersonService {
     public List<Person> findAll() {
         return personMapper.selectList();
     }
+
+    @Override
+    public List<Person> findPersonWithBooks(int id) {
+        return personMapper.selectPersonWithBooks(id);
+    }
 }

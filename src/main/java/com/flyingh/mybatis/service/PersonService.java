@@ -14,4 +14,7 @@ public interface PersonService {
     Person find(int id);
 
     List<Person> findAll();
+
+    List<Person> findPersonWithBooks(int id);
+
 }
