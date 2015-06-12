@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flyingh.mybatis.mapper.BookMapper">
+
+    <resultMap id="Person" type="com.flyingh.mybatis.vo.Person">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="age" column="age"/>
+    </resultMap>
+
+    <resultMap id="BookWithPersonResult" type="com.flyingh.mybatis.vo.Book">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="price" column="price"/>
+        <association property="person" column="p_id" columnPrefix="p_" resultMap="Person"/>
+    </resultMap>
+
+    <select id="selectOne" parameterType="_int" resultMap="BookWithPersonResult">
+        SELECT b.id,b.name,b.price,p.id as p_id,p.name as p_name,p.age as p_age
+        FROM book b
+        LEFT OUTER JOIN person p ON b.p_id=p.id
+        WHERE b.id=#{id}
+    </select>
+
+    <select id="selectList" resultMap="BookWithPersonResult">
+        SELECT b.id,b.name,b.price,p.id as p_id,p.name as p_name,p.age as p_age
+        FROM book b
+        LEFT OUTER JOIN person p ON b.p_id=p.id
+    </select>
+</mapper>
