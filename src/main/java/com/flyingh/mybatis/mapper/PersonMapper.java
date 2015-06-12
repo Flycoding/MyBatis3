@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 
 public interface PersonMapper {
-    @Insert("insert into person(name,age) values(#{name},#{age})")
     void insert(Person person);
 
     @Update("update person set name=#{name},age=#{age} where id=#{id}")

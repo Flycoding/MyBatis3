@@ -20,10 +20,14 @@
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
+        <property name="mapperLocations" value="classpath:mapper/PersonMapper.xml"/>
     </bean>
 
-    <bean id="personMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="mapperInterface" value="com.flyingh.mybatis.mapper.PersonMapper"/>
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    <!--<bean id="personMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
+    <!--<property name="mapperInterface" value="com.flyingh.mybatis.mapper.PersonMapper"/>-->
+    <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"/>-->
+    <!--</bean>-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.flyingh.mybatis.mapper"/>
     </bean>
 </beans>
